@@ -2,18 +2,27 @@ package com.temelt.arizatakip.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 
  * @author taner.temel
  *
  */
+@Entity
+@Table(name = "arz_cagri")
 public class Cagri extends BaseEntity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -879403963659864786L;
-	
+
 	private Long id;
 	private String baslik;
 	private Date tarihi;
@@ -24,6 +33,9 @@ public class Cagri extends BaseEntity {
 	private String problem;
 	private Boolean sonuc;
 
+	@Id
+	@GeneratedValue(generator = "sq_cagri", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "sq_cagri", sequenceName = "sq_cagri")
 	public Long getId() {
 		return id;
 	}
