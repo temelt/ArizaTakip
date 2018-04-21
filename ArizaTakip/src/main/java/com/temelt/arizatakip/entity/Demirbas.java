@@ -10,16 +10,14 @@ import javax.persistence.Table;
 
 /**
  * 
- * @author Ýbrahim
+ * @author ibrahim
  *
  */
 @Entity
 @Table(name = "arz_demirbas")
 public class Demirbas extends BaseEntity {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1979662304096095757L;
 	private Long id;
 	private String adi;
