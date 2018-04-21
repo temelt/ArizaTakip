@@ -40,7 +40,7 @@ public class Demirbas extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name="adi")
+	@Column(name="adi",length=100)
 	public String getAdi() {
 		return adi;
 	}
@@ -49,6 +49,7 @@ public class Demirbas extends BaseEntity {
 		this.adi = adi;
 	}
 
+	@Column(name="serino",length=100)
 	public String getSeriNo() {
 		return seriNo;
 	}
@@ -56,7 +57,8 @@ public class Demirbas extends BaseEntity {
 	public void setSeriNo(String seriNo) {
 		this.seriNo = seriNo;
 	}
-
+	
+	@Column(name="tipi")
 	public DemirbasTipi getTipi() {
 		return tipi;
 	}
@@ -64,7 +66,7 @@ public class Demirbas extends BaseEntity {
 	public void setTipi(DemirbasTipi tipi) {
 		this.tipi = tipi;
 	}
-
+	@Column(name="birimfiyat")
 	public Double getBirimFiyat() {
 		return birimFiyat;
 	}
@@ -73,6 +75,7 @@ public class Demirbas extends BaseEntity {
 		this.birimFiyat = birimFiyat;
 	}
 
+	@Column(name="aciklama",length=300)
 	public String getAciklama() {
 		return aciklama;
 	}
@@ -81,6 +84,7 @@ public class Demirbas extends BaseEntity {
 		this.aciklama = aciklama;
 	}
 
+	@Column(name="personel")
 	public Personel getPersonel() {
 		return personel;
 	}
