@@ -1,5 +1,6 @@
 package com.temelt.arizatakip.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,7 @@ public class Demirbas extends BaseEntity {
 		this.id = id;
 	}
 
+	@Column(name="adi")
 	public String getAdi() {
 		return adi;
 	}
