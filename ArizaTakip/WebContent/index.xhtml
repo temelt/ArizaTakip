@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<h:outputScript target="head" library="primefaces"
+		name="jquery/jquery.js" />
+</h:head>
+
+<h:body>
+	<h2>JSF 2.0 Hello World Example - index.xhtml</h2>
+	<h:form id="frmKisi">
+		<p:dataTable id="tblKisi" var="k" value="#{indexMB.kisis}">
+		
+			<f:facet name="header">
+	            Kişi Listesi
+	        </f:facet>
+	        <f:facet name="footer">
+		       <p:commandButton icon="ui-icon-search" value="Yeni" oncomplete="PF('dlgKisi').show()" />
+		    </f:facet>
+	        
+			<p:column headerText="Id">
+				<h:outputText value="#{k.id}" />
+			</p:column>
+
+			<p:column headerText="Ad">
+				<h:outputText value="#{k.ad}" />
+			</p:column>
+
+			<p:column headerText="Soyad">
+				<h:outputText value="#{k.soyad}" />
+			</p:column>
+		
+		</p:dataTable>
+		
+		<p:dialog header="Kişi Detay" widgetVar="dlgKisi" id="dlgKisi" modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+	        <p:outputPanel style="text-align:center;">
+	            <p:panelGrid  columns="2" columnClasses="label,value">
+		         	<h:outputText value="Id:" />
+	                <p:inputText value="#{indexMB.kisi.id}" />
+	 
+	                <h:outputText value="Ad" />
+	                <p:inputText value="#{indexMB.kisi.ad}" />
+	 
+	                <h:outputText value="Soyad" />
+	                <p:inputText value="#{indexMB.kisi.soyad}" />
+	                
+	                <p:commandButton value="Kapat" oncomplete="PF('dlgKisi').hide()" />
+	                <p:commandButton value="Kaydet" update=":frmKisi:tblKisi,:frmKisi:dlgKisi" actionListener="#{indexMB.kaydet}" oncomplete="PF('dlgKisi').hide()" />
+	            </p:panelGrid>
+	        </p:outputPanel>
+	    </p:dialog>
+
+	</h:form>
+</h:body>
+</html>
