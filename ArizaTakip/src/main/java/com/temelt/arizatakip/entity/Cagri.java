@@ -2,6 +2,7 @@ package com.temelt.arizatakip.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,6 +45,7 @@ public class Cagri extends BaseEntity {
 		this.id = id;
 	}
 
+	@Column(name = "baslik")
 	public String getBaslik() {
 		return baslik;
 	}
