@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 
@@ -45,7 +47,7 @@ public class Cagri extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name = "baslik")
+	@Column(name = "baslik",length=200)
 	public String getBaslik() {
 		return baslik;
 	}
@@ -54,6 +56,8 @@ public class Cagri extends BaseEntity {
 		this.baslik = baslik;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "tarih")
 	public Date getTarihi() {
 		return tarihi;
 	}
@@ -62,6 +66,7 @@ public class Cagri extends BaseEntity {
 		this.tarihi = tarihi;
 	}
 
+	@Column(name = "musteri",length=200)
 	public String getMusteri() {
 		return musteri;
 	}
@@ -70,6 +75,7 @@ public class Cagri extends BaseEntity {
 		this.musteri = musteri;
 	}
 
+	@Column(name = "adres",length=400)
 	public String getAdres() {
 		return adres;
 	}
@@ -78,6 +84,7 @@ public class Cagri extends BaseEntity {
 		this.adres = adres;
 	}
 
+	@Column(name = "telefon",length=13)
 	public String getTelefon() {
 		return telefon;
 	}
@@ -86,6 +93,7 @@ public class Cagri extends BaseEntity {
 		this.telefon = telefon;
 	}
 
+	@Column(name = "cihaz",length=200)
 	public String getCihaz() {
 		return cihaz;
 	}
@@ -94,6 +102,7 @@ public class Cagri extends BaseEntity {
 		this.cihaz = cihaz;
 	}
 
+	@Column(name = "problem",length=500)
 	public String getProblem() {
 		return problem;
 	}
@@ -102,6 +111,7 @@ public class Cagri extends BaseEntity {
 		this.problem = problem;
 	}
 
+	@Column(name = "sonuc")
 	public Boolean getSonuc() {
 		return sonuc;
 	}

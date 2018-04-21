@@ -1,10 +1,19 @@
 package com.temelt.arizatakip.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 /**
  * 
  * @author Osman
  *
  */
+@Entity
+@Table(name="personel_id")
+
 public class Personel extends BaseEntity {
 	/**
 	 * 
@@ -15,7 +24,9 @@ public class Personel extends BaseEntity {
 	private PersonelGorev personelGorev;
 	private Double maas;
 	private String sicilNo;
-
+@Id
+@GeneratedValue
+@SequenceGenerator(allocationSize=1,initialValue=100,name = "sq_personel",sequenceName"sq_personel")
 	public Long getId() {
 		return id;
 	}
