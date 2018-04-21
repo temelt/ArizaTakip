@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Demirbaş Listesi</title>
+	<h:outputScript target="head" library="primefaces" name="jquery/jquery.js" />
+</h:head>
+
+<h:body>
+	<h:form id="frmDemirbas">
+		<p:dataTable id="tblDemirbas" var="dmrbs" value="#{demirbasMB.demirbasListe}">
+
+			<f:facet name="header">
+	            Demirbaş Listesi
+	        </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{dmrbs.id}" />
+			</p:column>
+
+			<p:column headerText="Adı">
+				<h:outputText value="#{dmrbs.adi}" />
+			</p:column>
+			
+			<p:column headerText="Seri No">
+				<h:outputText value="#{dmrbs.seriNo}" />
+			</p:column>
+			
+			<p:column headerText="Demirbaş Tipi">
+				<h:outputText value="#{dmrbs.tipi}" />
+			</p:column>
+
+			<p:column headerText="Birim Fiyat">
+				<h:outputText value="#{dmrbs.birimFiyat}" />
+			</p:column>
+			
+			<p:column headerText="Açıklama">
+				<h:outputText value="#{dmrbs.aciklama}" />
+			</p:column>
+			
+			<p:column headerText="Personel">
+				<h:outputText value="#{dmrbs.personel}" />
+			</p:column>
+			
+
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>

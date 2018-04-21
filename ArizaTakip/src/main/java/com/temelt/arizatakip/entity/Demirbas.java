@@ -2,9 +2,12 @@ package com.temelt.arizatakip.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,7 +19,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "arz_demirbas")
 public class Demirbas extends BaseEntity {
-
 	
 	private static final long serialVersionUID = 1979662304096095757L;
 	private Long id;
@@ -47,7 +49,7 @@ public class Demirbas extends BaseEntity {
 		this.adi = adi;
 	}
 
-	@Column(name="serino",length=100)
+	@Column(name="seri_no",length=100)
 	public String getSeriNo() {
 		return seriNo;
 	}
@@ -56,7 +58,8 @@ public class Demirbas extends BaseEntity {
 		this.seriNo = seriNo;
 	}
 	
-	@Column(name="tipi")
+	@Column(name="demirbas_tipi")
+	@Enumerated
 	public DemirbasTipi getTipi() {
 		return tipi;
 	}
@@ -64,7 +67,7 @@ public class Demirbas extends BaseEntity {
 	public void setTipi(DemirbasTipi tipi) {
 		this.tipi = tipi;
 	}
-	@Column(name="birimfiyat")
+	@Column(name="birim_fiyat")
 	public Double getBirimFiyat() {
 		return birimFiyat;
 	}
@@ -82,7 +85,8 @@ public class Demirbas extends BaseEntity {
 		this.aciklama = aciklama;
 	}
 
-	@Column(name="personel")
+	@JoinColumn(name="personel")
+	@ManyToOne
 	public Personel getPersonel() {
 		return personel;
 	}
