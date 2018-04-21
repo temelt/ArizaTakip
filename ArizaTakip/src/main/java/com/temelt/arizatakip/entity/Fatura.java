@@ -13,7 +13,7 @@ public class Fatura extends BaseEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = -6795533100735223337L;
-	private Long id;
+//	private Long id;
 	private String adSoyad;
 	private String tc;
 	private Ariza ariza;
@@ -21,13 +21,13 @@ public class Fatura extends BaseEntity {
 	private Boolean odendiMi;
 	private Date faturaTarihi;
 
-	public Long getId() {
+/*	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
+	}*/
 
 	public String getAdSoyad() {
 		return adSoyad;
