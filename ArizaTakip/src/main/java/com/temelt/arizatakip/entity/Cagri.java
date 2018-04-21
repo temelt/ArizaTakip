@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 /**
  * 
  * @author taner.temel
+ * 
  *
  */
 @Entity
@@ -39,6 +40,7 @@ public class Cagri extends BaseEntity {
 	@Id
 	@GeneratedValue(generator = "sq_cagri", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "sq_cagri", sequenceName = "sq_cagri")
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -47,7 +49,7 @@ public class Cagri extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name = "baslik",length=200)
+	@Column(name = "baslik", length = 200)
 	public String getBaslik() {
 		return baslik;
 	}
@@ -66,7 +68,7 @@ public class Cagri extends BaseEntity {
 		this.tarihi = tarihi;
 	}
 
-	@Column(name = "musteri",length=200)
+	@Column(name = "musteri", length = 200)
 	public String getMusteri() {
 		return musteri;
 	}
@@ -75,7 +77,7 @@ public class Cagri extends BaseEntity {
 		this.musteri = musteri;
 	}
 
-	@Column(name = "adres",length=400)
+	@Column(name = "adres", length = 400)
 	public String getAdres() {
 		return adres;
 	}
@@ -84,7 +86,7 @@ public class Cagri extends BaseEntity {
 		this.adres = adres;
 	}
 
-	@Column(name = "telefon",length=13)
+	@Column(name = "telefon", length = 13)
 	public String getTelefon() {
 		return telefon;
 	}
@@ -93,7 +95,7 @@ public class Cagri extends BaseEntity {
 		this.telefon = telefon;
 	}
 
-	@Column(name = "cihaz",length=200)
+	@Column(name = "cihaz", length = 200)
 	public String getCihaz() {
 		return cihaz;
 	}
@@ -102,7 +104,7 @@ public class Cagri extends BaseEntity {
 		this.cihaz = cihaz;
 	}
 
-	@Column(name = "problem",length=500)
+	@Column(name = "problem", length = 500)
 	public String getProblem() {
 		return problem;
 	}

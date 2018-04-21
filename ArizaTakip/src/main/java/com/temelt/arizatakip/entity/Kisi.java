@@ -1,5 +1,11 @@
 package com.temelt.arizatakip.entity;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 /**
  * 
  * @author Iþýl
@@ -13,7 +19,14 @@ public class Kisi extends BaseEntity {
 	private Long id;
 	private String ad;
 	private String soyad;
+	private String telNo;
+	private String adres;
+	private String tc;
 
+	@Id
+	@GeneratedValue(generator = "sq_kisi", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "sq_kisi", sequenceName = "sq_kisi")
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -22,6 +35,7 @@ public class Kisi extends BaseEntity {
 		this.id = id;
 	}
 
+	@Column(name = "Ad", length = 50)
 	public String getAd() {
 		return ad;
 	}
@@ -30,12 +44,40 @@ public class Kisi extends BaseEntity {
 		this.ad = ad;
 	}
 
+	@Column(name = "Soyad", length = 50)
 	public String getSoyad() {
 		return soyad;
 	}
 
 	public void setSoyad(String soyad) {
 		this.soyad = soyad;
+	}
+
+	@Column(name = "Adres", length = 200)
+	public String getAdres() {
+		return adres;
+	}
+
+	public void setAdres(String adres) {
+		this.adres = adres;
+	}
+
+	@Column(name = "telNo", length = 11)
+	public String getTelNo() {
+		return telNo;
+	}
+
+	public void setTelNo(String telNo) {
+		this.telNo = telNo;
+	}
+
+	@Column(name = "TC", length = 11)
+	public String getTc() {
+		return tc;
+	}
+
+	public void setTc(String tc) {
+		this.tc = tc;
 	}
 
 }

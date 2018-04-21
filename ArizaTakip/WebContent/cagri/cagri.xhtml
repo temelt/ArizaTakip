@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Çağrı Listesi</title>
+	<h:outputScript target="head" library="primefaces" name="jquery/jquery.js" />
+</h:head>
+
+<h:body>
+	<h:form id="frmCagri">
+		<p:dataTable id="tblCagri" var="cgr" value="#{cagriMB.cagriListe}">
+
+			<f:facet name="header">
+	            Çağrı Listesi
+	        </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{cgr.id}" />
+			</p:column>
+
+			<p:column headerText="Başlık">
+				<h:outputText value="#{cgr.baslik}" />
+			</p:column>
+			
+			<p:column headerText="Tarih">
+				<h:outputText value="#{cgr.tarihi}" />
+			</p:column>
+			
+			<p:column headerText="Müşteri">
+				<h:outputText value="#{cgr.musteri}" />
+			</p:column>
+
+			<p:column headerText="Adres">
+				<h:outputText value="#{cgr.adres}" />
+			</p:column>
+			
+			<p:column headerText="Telefon">
+				<h:outputText value="#{cgr.telefon}" />
+			</p:column>
+			
+			<p:column headerText="Cihaz">
+				<h:outputText value="#{cgr.cihaz}" />
+			</p:column>
+			
+			<p:column headerText="Sorun/Problem">
+				<h:outputText value="#{cgr.problem}" />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>
