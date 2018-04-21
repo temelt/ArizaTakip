@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 /**
  * 
  * @author taner.temel
+ * 
  *
  */
 @Entity
