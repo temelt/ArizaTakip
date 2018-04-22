@@ -14,7 +14,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="personel_id")
+@Table(name = "arz_personel")
 
 public class Personel extends BaseEntity {
 	/**
@@ -26,9 +26,10 @@ public class Personel extends BaseEntity {
 	private PersonelGorev personelGorev;
 	private Double maas;
 	private String sicilNo;
-@Id
-@GeneratedValue(generator="sq_personel",strategy=GenerationType.SEQUENCE)
-@SequenceGenerator(allocationSize=1,initialValue=100,name = "sq_personel",sequenceName="sq_personel")
+
+	@Id
+	@GeneratedValue(generator = "sq_personel", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "sq_personel", sequenceName = "sq_personel")
 	public Long getId() {
 		return id;
 	}
@@ -36,7 +37,8 @@ public class Personel extends BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-@Column(name="personel_ad")
+
+	@Column(name = "personel_ad")
 	public Kisi getKisi() {
 		return kisi;
 	}
@@ -44,7 +46,8 @@ public class Personel extends BaseEntity {
 	public void setKisi(Kisi kisi) {
 		this.kisi = kisi;
 	}
-@Column(name="personel_görevi")
+
+	@Column(name = "personel_görevi")
 	public PersonelGorev getPersonelGorev() {
 		return personelGorev;
 	}
@@ -52,7 +55,8 @@ public class Personel extends BaseEntity {
 	public void setPersonelGorev(PersonelGorev personelGorev) {
 		this.personelGorev = personelGorev;
 	}
-@Column(name="personel_maasý")
+
+	@Column(name = "personel_maasý")
 	public Double getMaas() {
 		return maas;
 	}
@@ -60,7 +64,8 @@ public class Personel extends BaseEntity {
 	public void setMaas(Double maas) {
 		this.maas = maas;
 	}
-@Column(name="personel_sicil_no")
+
+	@Column(name = "personel_sicil_no")
 	public String getSicilNo() {
 		return sicilNo;
 	}
