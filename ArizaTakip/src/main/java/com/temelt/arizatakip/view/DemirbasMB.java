@@ -4,27 +4,31 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Demirbas;
 import com.temelt.arizatakip.service.DemirbasService;
 
-@ManagedBean(name = "demirbasMB")
-@ViewScoped
+@Controller("demirbasMB")
+@Scope("session")
 public class DemirbasMB implements Serializable {
 
 	private static final long serialVersionUID = 565465655565558L;
-	private DemirbasService demirbasService = new DemirbasService();
+
+	@Autowired
+	private DemirbasService demirbasService;
 
 	List<Demirbas> demirbasListe;
 
 	@PostConstruct
 	private void init() {
-		demirbasListe = demirbasService.getAll(null);
+		demirbasListe = demirbasService.findAll();
 	}
-	
-	public List<Demirbas> getDemirbasListe(){
+
+	public List<Demirbas> getDemirbasListe() {
 		return demirbasListe;
 	}
 

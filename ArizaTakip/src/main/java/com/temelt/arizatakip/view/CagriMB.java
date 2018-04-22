@@ -4,27 +4,31 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Cagri;
 import com.temelt.arizatakip.service.CagriService;
 
-@ManagedBean(name="cagriMB")
-@ViewScoped
+@Controller("cagriMB")
+@Scope("session")
 public class CagriMB implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2324054627791585677L;
-	private CagriService cagriService =new CagriService();
+	
+	@Autowired
+	private CagriService cagriService;
 	
 	List<Cagri> cagriListe ;
 
 	@PostConstruct
 	private void init(){
-		cagriListe = cagriService.getAll(null);
+		cagriListe = cagriService.findAll();
 	}
 	
 	

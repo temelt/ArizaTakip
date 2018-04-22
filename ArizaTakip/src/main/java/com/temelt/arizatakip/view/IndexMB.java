@@ -2,11 +2,11 @@ package com.temelt.arizatakip.view;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
-@ManagedBean(name = "indexMB")
-@ViewScoped
+@Controller("indexMB")
+@Scope("session")
 public class IndexMB implements Serializable {
 
 	/**
