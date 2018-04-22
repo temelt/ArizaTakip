@@ -52,8 +52,70 @@
 				<h:outputText value="#{cgr.problem}" />
 			</p:column>
 
+			<p:column headerText="işlemler">
+				<p:commandButton icon="ui-icon-pencil" action="#{cagriMB.goster(cgr.id)}" update=":frmCagri:dlgCagri" oncomplete="PF('dlgCagri').show()"></p:commandButton>
+				<p:commandButton icon="ui-icon-trash" action="#{cagriMB.sil(cgr.id)}" update=":frmCagri:tblCagri" >
+					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:commandButton value="Yeni" action="#{cagriMB.yeni}" update=":frmCagri:dlgCagri" oncomplete="PF('dlgCagri').show()"></p:commandButton>
+			</f:facet>
 		</p:dataTable>
 
+		<p:dialog id="dlgCagri" widgetVar="dlgCagri" header="Cağrı Düzenleme" modal="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Başlık :"></p:outputLabel>
+				<p:inputText value="#{cagriMB.cagri.baslik}"></p:inputText>
+				
+				<p:outputLabel value="Tarih :"></p:outputLabel>
+				<p:calendar value="#{cagriMB.cagri.tarihi}"></p:calendar>
+				
+				<p:outputLabel value="Müşteri :"></p:outputLabel>
+				<p:inputText value="#{cagriMB.cagri.musteri}"></p:inputText>
+				
+				<p:outputLabel value="Adres :"></p:outputLabel>
+				<p:inputTextarea value="#{cagriMB.cagri.adres}"></p:inputTextarea>
+				
+				<p:outputLabel value="Telefon :"></p:outputLabel>
+				<p:inputNumber value="#{cagriMB.cagri.telefon}"></p:inputNumber>
+				
+				<p:outputLabel value="Cihaz :"></p:outputLabel>
+				<p:inputText value="#{cagriMB.cagri.cihaz}"></p:inputText>
+				
+				<p:outputLabel value="Sorun / Problem :"></p:outputLabel>
+				<p:inputTextarea value="#{cagriMB.cagri.problem}"></p:inputTextarea>
+			</p:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton value="İptal" oncomplete="PF('dlgCagri').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" action="#{cagriMB.kaydet}" update=":frmCagri:tblCagri" oncomplete="PF('dlgCagri').hide()"></p:commandButton>
+			</f:facet>
+		</p:dialog>
 	</h:form>
 </h:body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

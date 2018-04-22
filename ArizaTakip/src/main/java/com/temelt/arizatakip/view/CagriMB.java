@@ -24,15 +24,43 @@ public class CagriMB implements Serializable {
 	@Autowired
 	private CagriService cagriService;
 	
-	List<Cagri> cagriListe ;
+	private List<Cagri> cagriListe ;
+	private Cagri cagri;
 
 	@PostConstruct
 	private void init(){
 		cagriListe = cagriService.findAll();
+		yeni();
 	}
 	
+	public void goster(Long id) {
+		cagri = cagriService.findOne(id);
+	}
+	
+	public void yeni() {
+		cagri = new Cagri();
+	}
+	
+	public void kaydet(){
+		cagriService.save(cagri);
+		cagriListe = cagriService.findAll();
+		yeni();
+	}
+	
+	public void sil(Long id){
+		cagriService.delete(id);
+		cagriListe = cagriService.findAll();
+	}
 	
 	public List<Cagri> getCagriListe() {
 		return cagriListe;
+	}
+	
+	public Cagri getCagri() {
+		return cagri;
+	}
+	
+	public void setCagri(Cagri cagri) {
+		this.cagri = cagri;
 	}
 }
