@@ -29,7 +29,12 @@
       <listener-class>
           org.springframework.web.context.ContextLoaderListener
       </listener-class>
-    </listener>      
+    </listener> 
+    
+    <context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>     
       
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
