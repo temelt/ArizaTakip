@@ -7,7 +7,8 @@
 	<ui:define name="pageContent">
 	
 	<h:form id="frmCagri">
-		<p:dataTable id="tblCagri" var="cgr" value="#{cagriController.cagriListe}">
+		<p:dataTable id="tblCagri" paginator="true" var="cgr" value="#{cagriController.cagriListe}"
+		reflow="true" rows="5">
 
 			<f:facet name="header">
 	            Çağrı Listesi
