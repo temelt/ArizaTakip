@@ -13,8 +13,8 @@ import javax.persistence.Table;
  * @author Ýrem
  *
  */
- @Entity
- @Table(name="arz_kullanýcý")
+@Entity
+@Table(name = "arz_kullanýcý")
 public class Kullanici extends BaseEntity {
 	/**
 	 * 
@@ -24,9 +24,10 @@ public class Kullanici extends BaseEntity {
 	private String usrnm;
 	private String pwd;
 	private Kisi kisi;
-@Id
-@GeneratedValue(generator="seq_kullanýcý",strategy=GenerationType.SEQUENCE)
-@SequenceGenerator(allocationSize=1,initialValue=100,name="seq_kullanýcý")
+
+	@Id
+	@GeneratedValue(generator = "seq_kullanýcý", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "seq_kullanýcý")
 	public Long getId() {
 		return id;
 	}
@@ -34,7 +35,8 @@ public class Kullanici extends BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-@Column(name="Username")
+
+	@Column(name = "Username")
 	public String getUsrnm() {
 		return usrnm;
 	}

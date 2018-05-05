@@ -51,3 +51,7 @@
 
 	<jpa:repositories base-package="com.temelt" />
 </beans>
+
+
+
+

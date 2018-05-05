@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 import com.temelt.arizatakip.entity.Cagri;
 import com.temelt.arizatakip.service.CagriService;
 
-@Controller("cagriMB")
+@Controller("cagriController")
 @Scope("session")
-public class CagriMB implements Serializable {
+public class CagriController implements Serializable {
 
 	/**
 	 * 
