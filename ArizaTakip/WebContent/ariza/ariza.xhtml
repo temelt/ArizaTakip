@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+
+		<h:form id="frmAriza">
+			<p:dataTable id="tblAriza" paginator="true" var="arz"
+				value="#{arizaController.arizaListe}" reflow="true" rows="5">
+
+				<f:facet name="header">
+	           Arıza Listesi
+	        </f:facet>
+
+				<p:column headerText="Id">
+					<h:outputText value="#{arz.id}" />
+				</p:column>
+				
+				<p:column headerText="Tarih">
+					<h:outputText value="#{arz.arizaTarihi}" />
+				</p:column>
+				
+				<p:column headerText="Konu">
+					<h:outputText value="#{arz.konu}" />
+				</p:column>
+				
+				<p:column headerText="Açıklama">
+					<h:outputText value="#{arz.aciklama}" />
+				</p:column>
+
+				<p:column headerText="Personel">
+					<h:outputText value="#{arz.personel}" />
+				</p:column>
+
+				<p:column headerText="Çağrı">
+					<h:outputText value="#{arz.cagri}" />
+				</p:column>
+
+				<p:column headerText="Ariza Durum">
+					<h:outputText value="#{arz.arizaDurum}" />
+				</p:column>
+			
+				<p:column headerText="işlemler">
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{arizaController.goster(arz.id)}"
+						update=":frmAriza:dlgAriza" oncomplete="PF('dlgAriza').show()"></p:commandButton>
+					<p:commandButton icon="ui-icon-trash"
+						action="#{arizaController.sil(arz.id)}"
+						update=":frmAriza:tblAriza">
+						<p:confirm header="Silme Onay" message="Emin Misiniz?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Evet" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Hayır" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Yeni" action="#{arizaController.yeni}"
+						update=":frmAriza:dlgAriza" oncomplete="PF('dlgAriza').show()"></p:commandButton>
+				</f:facet>
+			</p:dataTable>
+
+			<p:dialog id="dlgAriza" widgetVar="dlgAriza" header="Ağrıza Düzenleme"
+				modal="true">
+				<p:panelGrid columns="2">
+					
+					<p:outputLabel value="Tarih :"></p:outputLabel>
+					<p:calendar value="#{arizaController.ariza.arizaTarihi}"></p:calendar>
+
+					<p:outputLabel value="Konu :"></p:outputLabel>
+					<p:inputText value="#{arizaController.ariza.konu}"></p:inputText>
+
+					<p:outputLabel value="Açıklama :"></p:outputLabel>
+					<p:inputTextarea value="#{arizaController.ariza.aciklama}"></p:inputTextarea>
+
+					<p:outputLabel value="Personel :"></p:outputLabel>
+					<p:inputNumber value="#{arizaController.ariza.personel}"></p:inputNumber>
+
+					<p:outputLabel value="Çağrı :"></p:outputLabel>
+					<p:inputText value="#{arizaController.ariza.cagri}"></p:inputText>
+
+					<p:outputLabel value="Arıza Durum :"></p:outputLabel>
+					<p:inputTextarea value="#{arizaController.ariza.arizaDurum}"></p:inputTextarea>
+					
+					<p:autoComplete id="pAcomp"
+						value="#{arizaController.ariza.personel}"
+						completeMethod="#{arizaController.personelAcomp}" var="p"
+						itemLabel="#{p.kisi.adSoyad}" itemValue="#{p}"
+						converter="#{personelConverter}" forceSelection="true">
+					</p:autoComplete>
+
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton value="İptal" oncomplete="PF('dlgAriza').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet" action="#{arizaController.kaydet}"
+						update=":frmAriza:tblAriza" oncomplete="PF('dlgAriza').hide()"></p:commandButton>
+				</f:facet>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
