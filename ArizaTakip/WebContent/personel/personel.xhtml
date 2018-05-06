@@ -1,0 +1,91 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+
+		<h:form id="frmPersonel">
+			<p:dataTable id="tblPersonel" paginator="true" var="cgr"
+				value="#{personelController.personelListe}" reflow="true" rows="5">
+
+				<f:facet name="header">
+	            personel listesi
+	        </f:facet>
+
+				<p:column headerText="Id">
+					<h:outputText value="#{personel.id}" />
+				</p:column>
+
+				<p:column headerText="personelKisi">
+					<h:outputText value="#{personel.kisi}" />
+				</p:column>
+
+				<p:column headerText="perosnelMaas">
+					<h:outputText value="#{perosnel.maas}" />
+				</p:column>
+
+				<p:column headerText="personelGörev">
+					<h:outputText value="#{personel.personelGorev}" />
+				</p:column>
+
+				<p:column headerText="personelSicilNo">
+					<h:outputText value="#{personel.sicilNo}" />
+				</p:column>
+
+				<p:column headerText="işlemler">
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{personelController.goster(personel.id)}"
+						update=":frmPersonel:dlgPersonel"
+						oncomplete="PF('dlgPersonel').show()"></p:commandButton>
+					<p:commandButton icon="ui-icon-trash"
+						action="#{personelController.sil(personel.id)}"
+						update=":frmPersonel:tblPersonel">
+						<p:confirm header="Silme Onay" message="Emin Misiniz?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Evet" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Hayır" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Yeni" action="#{personelController.yeni}"
+						update=":frmPersonel:dlgPersonel"
+						oncomplete="PF('dlgPersonel').show()"></p:commandButton>
+				</f:facet>
+			</p:dataTable>
+
+			<p:dialog id="dlgPersonel" widgetVar="dlgPersonel"
+				header="Personel Düzenleme" modal="true">
+				<p:panelGrid columns="2">
+					
+					<p:outputLabel value="Maas:"></p:outputLabel>
+					<p:inputText value="#{personelController.personel.maas}"></p:inputText>
+
+
+					<p:outputLabel value="personelgörev :"></p:outputLabel>
+					<p:inputTextarea value="#{personelController.personel.personelGorev}"></p:inputTextarea>
+				
+				<p:outputLabel value="personelsicilno :"></p:outputLabel>
+				<p:inputTextarea value="#{personelController.personel.sicilNo}"></p:inputTextarea>
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton value="İptal"
+						oncomplete="PF('dlgPersonel').hide()"></p:commandButton>
+					<p:commandButton value="Kaydet"
+						action="#{personelController.kaydet}"
+						update=":frmPersonel:tblPersonel"
+						oncomplete="PF('dlgPersonel').hide()"></p:commandButton>
+				</f:facet>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
