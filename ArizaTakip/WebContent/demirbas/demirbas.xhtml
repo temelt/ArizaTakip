@@ -9,12 +9,14 @@
 
 <h:head>
 	<title>Demirbaş Listesi</title>
-	<h:outputScript target="head" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="head" library="primefaces"
+		name="jquery/jquery.js" />
 </h:head>
 
 <h:body>
 	<h:form id="frmDemirbas">
-		<p:dataTable id="tblDemirbas" var="dmrbs" value="#{demirbasMB.demirbasListe}">
+		<p:dataTable id="tblDemirbas" var="dmrbs"
+			value="#{demirbasMB.demirbasListe}">
 
 			<f:facet name="header">
 	            Demirbaş Listesi
@@ -27,11 +29,11 @@
 			<p:column headerText="Adı">
 				<h:outputText value="#{dmrbs.adi}" />
 			</p:column>
-			
+
 			<p:column headerText="Seri No">
 				<h:outputText value="#{dmrbs.seriNo}" />
 			</p:column>
-			
+
 			<p:column headerText="Demirbaş Tipi">
 				<h:outputText value="#{dmrbs.tipi}" />
 			</p:column>
@@ -39,17 +41,71 @@
 			<p:column headerText="Birim Fiyat">
 				<h:outputText value="#{dmrbs.birimFiyat}" />
 			</p:column>
-			
+
 			<p:column headerText="Açıklama">
 				<h:outputText value="#{dmrbs.aciklama}" />
 			</p:column>
-			
+
 			<p:column headerText="Personel">
 				<h:outputText value="#{dmrbs.personel}" />
 			</p:column>
-			
+
+
+			<p:column headerText="işlemler">
+				<p:commandButton icon="ui-icon-pencil"
+					action="#{demirbasController.goster(demirbas.id)}"
+					update=":frmDemirbas:dlgDemirbas"
+					oncomplete="PF('dlgDemirbas').show()"></p:commandButton>
+				<p:commandButton icon="ui-icon-trash"
+					action="#{demirbasController.sil(demirbas.id)}"
+					update=":frmDemirbas:tblDemirbas">
+					<p:confirm header="Silme Onay" message="Emin Misiniz?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Evet" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Hayır" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:column>
+
+			<f:facet name="footer">
+				<p:commandButton value="Yeni" action="#{demirbasController.yeni}"
+					update=":frmDemirbas:dlgDemirbas" oncomplete="PF('dlgDemirbas').show()"></p:commandButton>
+			</f:facet>
 
 		</p:dataTable>
+
+		<p:dialog id="dlgDemirbas" widgetVar="dlgDemirbas" header="Demirbaş Düzenleme"
+			modal="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Adı :"></p:outputLabel>
+				<p:inputText value="#{demirbasController.demirbas.adi}"></p:inputText>
+
+				<p:outputLabel value="Seri No :"></p:outputLabel>
+				<p:calendar value="#{demirbasController.demirbas.seriNo}"></p:calendar>
+
+				<p:outputLabel value="Demirbaş Tipi :"></p:outputLabel>
+				<p:inputText value="#{demirbasController.demirbas.tipi}"></p:inputText>
+
+				<p:outputLabel value="Birim Fiyat :"></p:outputLabel>
+				<p:inputTextarea value="#{demirbasController.demirbas.birimFiyat}"></p:inputTextarea>
+
+				<p:outputLabel value="Açıklama :"></p:outputLabel>
+				<p:inputNumber value="#{demirbasController.demirbas.aciklama}"></p:inputNumber>
+
+				<p:outputLabel value="Personel :"></p:outputLabel>
+				<p:inputText value="#{demirbasController.demirbas.personel}"></p:inputText>
+
+			</p:panelGrid>
+
+			<f:facet name="footer">
+				<p:commandButton value="İptal" oncomplete="PF('dlgDemirbas').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" action="#{demirbasController.kaydet}"
+					update=":frmDemirbas:tblDemirbas" oncomplete="PF('dlgDemirbas').hide()"></p:commandButton>
+			</f:facet>
+		</p:dialog>
 
 	</h:form>
 </h:body>
