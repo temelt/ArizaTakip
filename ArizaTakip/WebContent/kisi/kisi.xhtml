@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+	
+	<h:form id="frmKisi">
+		<p:dataTable id="tblKisi" paginator="true" var="kisi" value="#{kisiController.kisiListe}"
+		reflow="true" rows="5">
+
+			<f:facet name="header">
+	            Kişi Listesi
+	        </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{kisi.id}" />
+			</p:column>
+
+			<p:column headerText="Ad">
+				<h:outputText value="#{kisi.ad}" />
+			</p:column>
+			
+			<p:column headerText="Soyad">
+				<h:outputText value="#{kisi.soyad}" />
+			</p:column>
+			
+
+			<p:column headerText="Adres">
+				<h:outputText value="#{kisi.adres}" />
+			</p:column>
+			
+			<p:column headerText="Telefon">
+				<h:outputText value="#{kisi.telNo}" />
+			</p:column>
+			
+			<p:column headerText="TC">
+				<h:outputText value="#{kisi.tc}" />
+			</p:column>
+			
+			
+
+			<p:column headerText="işlemler">
+				<p:commandButton icon="ui-icon-pencil" action="#{kisiController.goster(kisi.id)}" update=":frmKisi:dlgKisi" oncomplete="PF('dlgKisi').show()"></p:commandButton>
+				<p:commandButton icon="ui-icon-trash" action="#{kisiController.sil(kisi.id)}" update=":frmKisi:tblKisi" >
+					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:commandButton value="Yeni" action="#{kisiController.yeni}" update=":frmKisi:dlgKisi" oncomplete="PF('dlgKisi').show()"></p:commandButton>
+			</f:facet>
+		</p:dataTable>
+
+		<p:dialog id="dlgKisi" widgetVar="dlgKisi" header="Kişi Düzenleme" modal="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Ad:"></p:outputLabel>
+				<p:inputText value="#{kisiController.kisi.ad}"></p:inputText>
+				
+				<p:outputLabel value="Soyad :"></p:outputLabel>
+				<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
+				
+				<p:outputLabel value="Telefon No :"></p:outputLabel>
+				<p:inputText value="#{kisiController.kisi.telNo}"></p:inputText>
+				
+				<p:outputLabel value="Adres :"></p:outputLabel>
+				<p:inputTextarea value="#{kisiController.kisi.adres}"></p:inputTextarea>
+			
+				
+				<p:outputLabel value="TC :"></p:outputLabel>
+				<p:inputText value="#{kisiController.kisi.tc}"></p:inputText>
+				
+			</p:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton value="İptal" oncomplete="PF('dlgKisi').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" action="#{kisiController.kaydet}" update=":frmKisi:tblKisi" oncomplete="PF('dlgKisi').hide()"></p:commandButton>
+			</f:facet>
+		</p:dialog>
+	</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
