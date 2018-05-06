@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.temelt.arizatakip.entity.Cagri;
 import com.temelt.arizatakip.entity.Personel;
 import com.temelt.arizatakip.entity.Talep;
+import com.temelt.arizatakip.service.PersonelService;
 import com.temelt.arizatakip.service.TalepService;
 
 
@@ -27,6 +28,8 @@ public class TalepController implements Serializable {
 	
 	@Autowired
 	private TalepService talepService;
+	@Autowired
+	private PersonelService personelService;
 	
 	private List<Talep> talepListe;
 	private Talep talep;
@@ -38,7 +41,7 @@ public class TalepController implements Serializable {
 	}
 	
 	public List<Personel> personelAcomp(String term) {
-		List<Personel> liste = talepService.getBySicilNoIgnoreCaseContaining(term);
+		List<Personel> liste = personelService.getBySicilNoIgnoreCaseContaining(term);
 		return liste;
 	}
 	
