@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Cagri;
+import com.temelt.arizatakip.entity.Personel;
 import com.temelt.arizatakip.service.CagriService;
+import com.temelt.arizatakip.service.PersonelService;
 
 @Controller("cagriController")
 @Scope("session")
@@ -23,6 +25,8 @@ public class CagriController implements Serializable {
 	
 	@Autowired
 	private CagriService cagriService;
+	@Autowired
+	private PersonelService personelService;
 	
 	private List<Cagri> cagriListe ;
 	private Cagri cagri;
@@ -31,6 +35,11 @@ public class CagriController implements Serializable {
 	private void init(){
 		cagriListe = cagriService.findAll();
 		yeni();
+	}
+	
+	public List<Personel> personelAcomp(String term) {
+		List<Personel> liste = personelService.getBySicilNoIgnoreCaseContaining(term);
+		return liste;
 	}
 	
 	public void goster(Long id) {

@@ -1,16 +1,21 @@
 package com.temelt.arizatakip.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
  * @author Iþýl
  *
  */
+@Entity
+@Table(name = "arz_kisi")
 public class Kisi extends BaseEntity {
 	/**
 	 * 
@@ -79,5 +84,22 @@ public class Kisi extends BaseEntity {
 	public void setTc(String tc) {
 		this.tc = tc;
 	}
+	
+	// Calculated Field / Transient Field
+	@Transient
+	public String getAdSoyad(){
+		return this.ad +" "+this.soyad;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

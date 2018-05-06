@@ -45,6 +45,10 @@
 			<p:column headerText="Sorun/Problem">
 				<h:outputText value="#{cgr.problem}" />
 			</p:column>
+			
+			<p:column headerText="Atanan Personel">
+				<h:outputText value="#{cgr.personel.kisi.adSoyad}" />
+			</p:column>
 
 			<p:column headerText="işlemler">
 				<p:commandButton icon="ui-icon-pencil" action="#{cagriController.goster(cgr.id)}" update=":frmCagri:dlgCagri" oncomplete="PF('dlgCagri').show()"></p:commandButton>
@@ -84,6 +88,12 @@
 				
 				<p:outputLabel value="Sorun / Problem :"></p:outputLabel>
 				<p:inputTextarea value="#{cagriController.cagri.problem}"></p:inputTextarea>
+				
+				<p:outputLabel value="Atanan Personel :"></p:outputLabel>
+				<p:autoComplete id="pAcomp" value="#{cagriController.cagri.personel}" completeMethod="#{cagriController.personelAcomp}"
+                        var="p" itemLabel="#{p.kisi.adSoyad}" itemValue="#{p}" converter="#{personelConverter}" forceSelection="true">
+                        </p:autoComplete>
+            
 			</p:panelGrid>
 			
 			<f:facet name="footer">
