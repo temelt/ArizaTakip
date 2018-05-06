@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+	
+	<h:form id="frmCagri">
+		<p:dataTable id="tblTalep" paginator="true" var="cgr" value="#{talepController.talepListe}"
+		reflow="true" rows="5">
+
+			<f:facet name="header">
+	            Talep Listesi
+	        </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{tlp.id}" />
+			</p:column>
+
+			<p:column headerText="Ariza">
+				<h:outputText value="#{tlp.ariza}" />
+			</p:column>
+			
+			<p:column headerText="Tarih">
+				<h:outputText value="#{cgr.tarihi}" />
+			</p:column>
+			
+			<p:column headerText="Ekipman">
+				<h:outputText value="#{tlp.ekipman}" />
+			</p:column>
+
+			<p:column headerText="Aciklama">
+				<h:outputText value="#{tlp.aciklama}" />
+			</p:column>
+			
+			<p:column headerText="Maliyet">
+				<h:outputText value="#{tlp.maliyet}" />
+			</p:column>
+			
+			<p:column headerText="işlemler">
+				<p:commandButton icon="ui-icon-pencil" action="#{talepController.goster(tlp.id)}" update=":frmTalep:dlgTalep" oncomplete="PF('dlgTalep').show()"></p:commandButton>
+				<p:commandButton icon="ui-icon-trash" action="#{talepController.sil(tlp.id)}" update=":frmTalep:tblTalep" >
+					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:commandButton value="Yeni" action="#{talepController.yeni}" update=":frmTalep:dlgTalep" oncomplete="PF('dlgTalep').show()"></p:commandButton>
+			</f:facet>
+		</p:dataTable>
+
+		<p:dialog id="dlgTalep" widgetVar="dlgTalep" header="Talep Düzenleme" modal="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Başlık :"></p:outputLabel>
+				<p:inputText value="#{talepController.talep.ariza}"></p:inputText>
+				
+				<p:outputLabel value="Tarih :"></p:outputLabel>
+				<p:calendar value="#{talepController.talep.tarihi}"></p:calendar>
+				
+				<p:outputLabel value="Müşteri :"></p:outputLabel>
+				<p:inputText value="#{talepController.talep.ekipman}"></p:inputText>
+				
+				<p:outputLabel value="Adres :"></p:outputLabel>
+				<p:inputTextarea value="#{talepController.talep.aciklama}"></p:inputTextarea>
+				
+				<p:outputLabel value="Telefon :"></p:outputLabel>
+				<p:inputNumber value="#{talepController.talep.maliyet}"></p:inputNumber>
+				
+				<p:outputLabel value="Atanan Personel :"></p:outputLabel>
+				<p:autoComplete id="pAcomp" value="#{cagriController.cagri.personel}" completeMethod="#{cagriController.personelAcomp}"
+                        var="p" itemLabel="#{p.kisi.adSoyad}" itemValue="#{p}" converter="#{personelConverter}" forceSelection="true">
+                        </p:autoComplete>
+            
+			</p:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton value="İptal" oncomplete="PF('dlgTalep').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" action="#{talepController.kaydet}" update=":frmTalep:tblTalep" oncomplete="PF('dlgTalep').hide()"></p:commandButton>
+			</f:facet>
+		</p:dialog>
+	</h:form>
+
+	</ui:define>
+</ui:composition>
