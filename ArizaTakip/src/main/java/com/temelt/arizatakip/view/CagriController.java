@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Cagri;
@@ -83,7 +84,22 @@ public class CagriController implements Serializable {
 				if(first>0) {
 					offset = first/pageSize;
 				}
-				Page<Cagri> liste = cagriService.findAll(new PageRequest(offset, pageSize,null));
+				
+				Sort s=null;
+				if(sortOrder!=null && sortField !=null) {
+					if(sortOrder.equals(SortOrder.ASCENDING)) {
+						s =new Sort(Sort.Direction.ASC,sortField);
+					}else if(sortOrder.equals(SortOrder.DESCENDING)) {
+						s =new Sort(Sort.Direction.DESC,sortField);
+					}
+				}
+							
+				String baslik="";
+				if(filters.get("baslik")!=null) {
+					baslik =filters.get("baslik").toString();
+				}
+				
+				Page<Cagri> liste = cagriService.findByBaslikContainingIgnoreCase(baslik,new PageRequest(offset, pageSize,s));
 				this.setRowCount(Integer.parseInt(String.valueOf(liste.getTotalElements())));
 				list = liste.getContent();
 				return list;

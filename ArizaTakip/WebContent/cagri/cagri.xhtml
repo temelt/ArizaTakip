@@ -7,42 +7,42 @@
 	<ui:define name="pageContent">
 	
 	<h:form id="frmCagri">
-		<p:dataTable id="tblCagri" paginator="true" var="cgr" value="#{cagriController.cagriListe}"
+		<p:dataTable id="tblCagri" widgetVar="tblCagri" paginator="true" var="cgr" value="#{cagriController.cagriListe}"
 		reflow="true" rows="5" lazy="true" rowKey="#{cgr.id}">
 
 			<f:facet name="header">
 	            Çağrı Listesi
 	        </f:facet>
 
-			<p:column headerText="Id" >
+			<p:column headerText="Id" sortBy="#{cgr.id}">
 				<h:outputText value="#{cgr.id}" />
 			</p:column>
 
-			<p:column headerText="Başlık">
+			<p:column headerText="Başlık" sortBy="#{cgr.baslik}" filterBy="#{cgr.baslik}">
 				<h:outputText value="#{cgr.baslik}" />
 			</p:column>
 			
-			<p:column headerText="Tarih">
+			<p:column headerText="Tarih" sortBy="#{cgr.tarihi}">
 				<h:outputText value="#{cgr.tarihi}" />
 			</p:column>
 			
-			<p:column headerText="Müşteri">
+			<p:column headerText="Müşteri" sortBy="#{cgr.musteri}">
 				<h:outputText value="#{cgr.musteri}" />
 			</p:column>
 
-			<p:column headerText="Adres">
+			<p:column headerText="Adres" sortBy="#{cgr.adres}">
 				<h:outputText value="#{cgr.adres}" />
 			</p:column>
 			
-			<p:column headerText="Telefon">
+			<p:column headerText="Telefon" sortBy="#{cgr.telefon}">
 				<h:outputText value="#{cgr.telefon}" />
 			</p:column>
 			
-			<p:column headerText="Cihaz">
+			<p:column headerText="Cihaz" sortBy="#{cgr.cihaz}">
 				<h:outputText value="#{cgr.cihaz}" />
 			</p:column>
 			
-			<p:column headerText="Sorun/Problem">
+			<p:column headerText="Sorun/Problem" sortBy="#{cgr.problem}">
 				<h:outputText value="#{cgr.problem}" />
 			</p:column>
 			
@@ -50,7 +50,7 @@
 				<h:outputText value="#{cgr.personel.kisi.adSoyad}" />
 			</p:column>
 
-			<p:column headerText="işlemler">
+			<p:column headerText="işlemler" exportable="false">
 				<p:commandButton icon="ui-icon-pencil" action="#{cagriController.goster(cgr.id)}" update=":frmCagri:dlgCagri" oncomplete="PF('dlgCagri').show()"></p:commandButton>
 				<p:commandButton icon="ui-icon-trash" action="#{cagriController.sil(cgr.id)}" update=":frmCagri:tblCagri" >
 					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
@@ -63,7 +63,20 @@
 			
 			<f:facet name="footer">
 				<p:commandButton value="Yeni" action="#{cagriController.yeni}" update=":frmCagri:dlgCagri" oncomplete="PF('dlgCagri').show()"></p:commandButton>
-			</f:facet>
+				<h:outputText value="&#160;" />
+	            <p:commandLink value="XLS">
+	                <p:dataExporter encoding="iso-8859-9" type="xls" target="tblCagri" fileName="cagri" />
+	            </p:commandLink>
+	            <h:outputText value="&#160;" />
+	            <p:commandLink value="PDF">
+	                <p:dataExporter encoding="iso-8859-9" type="pdf" target="tblCagri" fileName="cagri"/>
+	            </p:commandLink>
+	 			<h:outputText value="&#160;" />
+	            <p:commandLink value="CSV">
+	                <p:dataExporter encoding="iso-8859-9" type="csv" target="tblCagri" fileName="cagri" />
+	            </p:commandLink>
+	 
+	        </f:facet>
 		</p:dataTable>
 
 		<p:dialog id="dlgCagri" widgetVar="dlgCagri" header="Cağrı Düzenleme" modal="true">
