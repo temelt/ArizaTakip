@@ -2,16 +2,12 @@ package com.temelt.arizatakip.view;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import com.temelt.arizatakip.entity.Demirbas;
 import com.temelt.arizatakip.service.DemirbasService;
-import com.temelt.arizatakip.service.PersonelService;
 
 @Controller("demirbasController")
 @Scope("session")
@@ -21,9 +17,6 @@ public class DemirbasController implements Serializable {
 
 	@Autowired
 	private DemirbasService demirbasService;
-
-	@Autowired
-	private PersonelService personelService;
 	
 	private List<Demirbas> demirbasListe;
 	private Demirbas demirbas;

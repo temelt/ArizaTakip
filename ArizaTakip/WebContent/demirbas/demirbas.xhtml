@@ -79,8 +79,13 @@
 					<p:outputLabel value="Seri No :"></p:outputLabel>
 					<p:inputText value="#{demirbasController.demirbas.seriNo}"></p:inputText>
 
-					<p:outputLabel value="Demirbaş Tipi :"></p:outputLabel>
-					<p:inputText value="#{demirbasController.demirbas.tipi}"></p:inputText>
+					<p:outputLabel for="console" value="Demirbaş Tipi" />
+					<p:selectOneMenu id="console" value="#{demirbasController.demirbas.tipi}" style="width:147px">
+						<f:selectItem itemLabel="Seçim Yapınız" itemValue="" />
+						<f:selectItem itemLabel="BILGISAYAR" itemValue="BILGISAYAR" />
+						<f:selectItem itemLabel="CEP_TELEFONU" itemValue="CEP_TELEFONU" />
+						<f:selectItem itemLabel="ARAC" itemValue="ARAC" />
+					</p:selectOneMenu>
 
 					<p:outputLabel value="Birim Fiyat :"></p:outputLabel>
 					<p:inputNumber value="#{demirbasController.demirbas.birimFiyat}"></p:inputNumber>
