@@ -8,13 +8,13 @@
 	
 	<h:form id="frmCagri">
 		<p:dataTable id="tblCagri" paginator="true" var="cgr" value="#{cagriController.cagriListe}"
-		reflow="true" rows="5">
+		reflow="true" rows="5" lazy="true" rowKey="#{cgr.id}">
 
 			<f:facet name="header">
 	            Çağrı Listesi
 	        </f:facet>
 
-			<p:column headerText="Id">
+			<p:column headerText="Id" >
 				<h:outputText value="#{cgr.id}" />
 			</p:column>
 
