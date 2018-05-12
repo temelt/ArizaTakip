@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Demirbas;
 import com.temelt.arizatakip.service.DemirbasService;
+import com.temelt.arizatakip.service.PersonelService;
 
 @Controller("demirbasController")
 @Scope("session")
@@ -21,6 +22,9 @@ public class DemirbasController implements Serializable {
 	@Autowired
 	private DemirbasService demirbasService;
 
+	@Autowired
+	private PersonelService personelService;
+	
 	private List<Demirbas> demirbasListe;
 	private Demirbas demirbas;
 
@@ -30,21 +34,21 @@ public class DemirbasController implements Serializable {
 		yeni();
 	}
 
-	private void goster(Long id) {
+	public void goster(Long id) {
 		demirbas = demirbasService.findOne(id);
 	}
 
-	private void yeni() {
+	public void yeni() {
 		demirbas = new Demirbas();
 	}
 
-	private void kaydet() {
+	public void kaydet() {
 		demirbasService.save(demirbas);
 		demirbasListe = demirbasService.findAll();
 		yeni();
 	}
 
-	private void sil(Long id) {
+	public void sil(Long id) {
 		demirbasService.delete(id);
 		demirbasListe = demirbasService.findAll();
 	}
