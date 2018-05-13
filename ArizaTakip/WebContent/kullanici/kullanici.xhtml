@@ -6,7 +6,7 @@
 	template="/template/template.xhtml">
 	<ui:define name="pageContent">
 		<h:form id="frmKullanici">
-			<p:dataTable id="tblKullanici" paginator="true" var="k"
+			<p:dataTable id="tblKullanici" paginator="true" var="k" lazy="true"
 				value="#{kullaniciController.kullaniciL}" reflow="true">
 				<f:facet name="header">
 					 Kullanici Listesi
