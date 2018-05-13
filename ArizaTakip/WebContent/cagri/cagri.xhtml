@@ -82,7 +82,10 @@
 		<p:dialog id="dlgCagri" widgetVar="dlgCagri" header="Cağrı Düzenleme" modal="true">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Başlık :"></p:outputLabel>
-				<p:inputText value="#{cagriController.cagri.baslik}"></p:inputText>
+				<p:inputText id="baslikTxt" title="Çağrı Konusu" value="#{cagriController.cagri.baslik}">
+					<p:tooltip id="toolTipFocus" for="baslikTxt" showEvent="focus" hideEvent="blur" />
+				</p:inputText>
+				
 				
 				<p:outputLabel value="Tarih :"></p:outputLabel>
 				<p:calendar value="#{cagriController.cagri.tarihi}"></p:calendar>
