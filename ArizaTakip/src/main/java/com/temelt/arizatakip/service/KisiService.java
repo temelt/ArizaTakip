@@ -1,6 +1,8 @@
 package com.temelt.arizatakip.service;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
@@ -13,6 +15,8 @@ import com.temelt.arizatakip.entity.Kisi;
 public interface KisiService extends JpaRepository<Kisi, Long> {
 
 	Page<Kisi> findByAdContainingIgnoreCase(String ad, Pageable pageable);
+
+	List<Kisi> getByTc(String term);
 
 
 
