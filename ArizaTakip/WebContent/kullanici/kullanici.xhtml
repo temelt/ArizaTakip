@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+		<h:form id="frmKullanici">
+			<p:dataTable id="tblKullanici" paginator="true" var="k"
+				value="#{kullaniciController.kullaniciL}" reflow="true">
+				<f:facet name="header">
+	 Kullanici Listesi
+	 </f:facet>
+				<p:column headerText="id">
+					<h:outputText value="#{k.id}" />
+				</p:column>
+				<p:column headerText="Kullanıcı İsmi">
+					<h:outputText value="#{k.usrnm}" />
+				</p:column>
+				<p:column headerText="Şifre">
+					<h:outputText value="#{k.pwdbir}" />
+				</p:column>
+				<p:column headerText="Kisi">
+					<h:outputText value="#{k.Kullanıcı.kisi.ad}" />
+				</p:column>
+				<p:column headerText="İşlemler">
+					<p:commandButton icon="ui-icon-pencil"
+						action="#{kullaniciController.show(k.id)}"
+						update=":frmKullanici:dlgKullanici"
+						oncomplete="PF('dlgKullanici').show()"></p:commandButton>
+					<p:commandButton icon="ui-icon-trash"
+						action="#{kullaniciController.delete(k.id)}"
+						update=":frmKullanici:tblKullanici">
+						<p:confirm header="Silme onay" message="emin misiniz ?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="evet" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="hayır" type="button"
+							styleClass="ui-confirmdialog-no" ivon="ui-icon-close" />
+					</p:confirmDialog>
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Yeni" action="#{kullaniciController.yeni}"
+						update=":frmKullanici:dlgKullanici"
+						oncomplete="PF('dlgKullanici').show()" />
+				</f:facet>
+			</p:dataTable>
+			<p:dialog id="dlgKullanici" widgetVar="dlgKullanici"
+				header="Kullanıcı Düzenlemeleri" modal="true">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Kullanıcı İsmi:"></p:outputLabel>
+					<p:inputText value="#{kullaniciController.kullanici.usrnm}" />
+					<h:panelGrid columns="2" id="sifre" cellpadding="5">
+						<h:outputLabel for="pwd1" value="Kullanıcı Şifre: *" />
+						<p:password id="pwd1" value="#{kullaniciController.kullanici.pwdbir}"
+							match="pwd2" label="Password 1" required="true" />
+
+						<h:outputLabel for="pwd2" value="Kullanıcı Şifre Tekrar: *" />
+						<p:password id="pwd2" value="#{kullaniciController.kullanici.pwdiki}"
+							label="Password 2" required="true" />
+					</h:panelGrid>
+					<p:commandButton update="sifre" value="Save" />
+					<p:outputLabel value="Kişi:"></p:outputLabel>
+					<p:autoComplete id="pAcomp" value="#{kullaniciController.kullanici.kisi}"
+						completeMethod="#{kullaniciController.kisiAcomp}" var="ks"
+						itemLabel="#{ks.kisi.ad}" itemValue="#{ks}"
+						converter="#{kisiConverter}" forceSelection="true   "></p:autoComplete>
+				</p:panelGrid>
+				<f:facet name="footer">
+					<p:commandButton value="iptal"
+						oncomplete="PF('dlgKullanici').hide()"></p:commandButton>
+					<p:commandButton value="kaydet" acrion="#{kullaniciController.save}"
+						update=":frmKullanici:tblKullanici"
+						oncomplete="PF('dlgKullanici').hide()"></p:commandButton>
+
+				</f:facet>
+
+			</p:dialog>
+
+
+
+
+		</h:form> </ui:define></ui:composition>

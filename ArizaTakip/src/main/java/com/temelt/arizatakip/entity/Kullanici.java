@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,13 +24,13 @@ public class Kullanici extends BaseEntity {
 	private static final long serialVersionUID = -9113248160802770476L;
 	private Long id;
 	private String usrnm;
-	private String pwd;
 	private Kisi kisi;
-
-	@Id
+	private String pwdbir;
+	private String pwdiki;
+    @Id
 	@GeneratedValue(generator = "seq_kullanýcý", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "seq_kullanýcý")
-	public Long getId() {
+	public Long getId(){
 		return id;
 	}
 
@@ -45,14 +47,8 @@ public class Kullanici extends BaseEntity {
 		this.usrnm = usrnm;
 	}
 
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-
+	@JoinColumn(name="kisi_id")
+	@ManyToOne
 	public Kisi getKisi() {
 		return kisi;
 	}
@@ -60,5 +56,22 @@ public class Kullanici extends BaseEntity {
 	public void setKisi(Kisi kisi) {
 		this.kisi = kisi;
 	}
+	@Column(name="Þifre")
+	public String getPwdbir() {
+		return pwdbir;
+	}
+
+	public void setPwdbir(String pwdbir) {
+		this.pwdbir = pwdbir;
+	}
+
+	public String getPwdiki() {
+		return pwdiki;
+	}
+
+	public void setPwdiki(String pwdiki) {
+		this.pwdiki = pwdiki;
+	}
+
 
 }
