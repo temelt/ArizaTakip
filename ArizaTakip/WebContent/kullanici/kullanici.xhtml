@@ -9,8 +9,9 @@
 			<p:dataTable id="tblKullanici" paginator="true" var="k"
 				value="#{kullaniciController.kullaniciL}" reflow="true">
 				<f:facet name="header">
-	 Kullanici Listesi
-	 </f:facet>
+					 Kullanici Listesi
+				</f:facet>
+				 
 				<p:column headerText="id">
 					<h:outputText value="#{k.id}" />
 				</p:column>
@@ -18,10 +19,10 @@
 					<h:outputText value="#{k.usrnm}" />
 				</p:column>
 				<p:column headerText="Şifre">
-					<h:outputText value="#{k.pwdbir}" />
+					<h:outputText value="#{k.psw}" />
 				</p:column>
 				<p:column headerText="Kisi">
-					<h:outputText value="#{k.Kullanıcı.kisi.ad}" />
+					<h:outputText value="#{k.kisi.ad}" />
 				</p:column>
 				<p:column headerText="İşlemler">
 					<p:commandButton icon="ui-icon-pencil"
@@ -52,26 +53,17 @@
 				<p:panelGrid columns="2">
 					<p:outputLabel value="Kullanıcı İsmi:"></p:outputLabel>
 					<p:inputText value="#{kullaniciController.kullanici.usrnm}" />
-					<h:panelGrid columns="2" id="sifre" cellpadding="5">
-						<h:outputLabel for="pwd1" value="Kullanıcı Şifre: *" />
-						<p:password id="pwd1" value="#{kullaniciController.kullanici.pwdbir}"
-							match="pwd2" label="Password 1" required="true" />
 
-						<h:outputLabel for="pwd2" value="Kullanıcı Şifre Tekrar: *" />
-						<p:password id="pwd2" value="#{kullaniciController.kullanici.pwdiki}"
-							label="Password 2" required="true" />
-					</h:panelGrid>
-					<p:commandButton update="sifre" value="Save" />
-					<p:outputLabel value="Kişi:"></p:outputLabel>
-					<p:autoComplete id="pAcomp" value="#{kullaniciController.kullanici.kisi}"
-						completeMethod="#{kullaniciController.kisiAcomp}" var="ks"
-						itemLabel="#{ks.kisi.ad}" itemValue="#{ks}"
-						converter="#{kisiConverter}" forceSelection="true   "></p:autoComplete>
+
+					<h:outputLabel for="pwd1" value="Kullanıcı Şifre: *" />
+					<p:password id="pwd1" value="#{kullaniciController.kullanici.psw}" />
+
 				</p:panelGrid>
 				<f:facet name="footer">
 					<p:commandButton value="iptal"
 						oncomplete="PF('dlgKullanici').hide()"></p:commandButton>
-					<p:commandButton value="kaydet" acrion="#{kullaniciController.save}"
+					<p:commandButton value="kaydet"
+						action="#{kullaniciController.save}"
 						update=":frmKullanici:tblKullanici"
 						oncomplete="PF('dlgKullanici').hide()"></p:commandButton>
 
@@ -82,4 +74,6 @@
 
 
 
-		</h:form> </ui:define></ui:composition>
+		</h:form>
+	</ui:define>
+</ui:composition>

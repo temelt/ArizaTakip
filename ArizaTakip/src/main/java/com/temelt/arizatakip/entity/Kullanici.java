@@ -25,12 +25,12 @@ public class Kullanici extends BaseEntity {
 	private Long id;
 	private String usrnm;
 	private Kisi kisi;
-	private String pwdbir;
-	private String pwdiki;
-    @Id
+	private String psw;
+
+	@Id
 	@GeneratedValue(generator = "seq_kullanýcý", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(allocationSize = 1, initialValue = 100, name = "seq_kullanýcý")
-	public Long getId(){
+	public Long getId() {
 		return id;
 	}
 
@@ -38,7 +38,7 @@ public class Kullanici extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name = "Username")
+	@Column(name = "usrnm")
 	public String getUsrnm() {
 		return usrnm;
 	}
@@ -47,7 +47,7 @@ public class Kullanici extends BaseEntity {
 		this.usrnm = usrnm;
 	}
 
-	@JoinColumn(name="kisi_id")
+	@JoinColumn(name = "kisi_id")
 	@ManyToOne
 	public Kisi getKisi() {
 		return kisi;
@@ -56,22 +56,14 @@ public class Kullanici extends BaseEntity {
 	public void setKisi(Kisi kisi) {
 		this.kisi = kisi;
 	}
-	@Column(name="Þifre")
-	public String getPwdbir() {
-		return pwdbir;
+
+	@Column(name = "pwd")
+	public String getPsw() {
+		return psw;
 	}
 
-	public void setPwdbir(String pwdbir) {
-		this.pwdbir = pwdbir;
+	public void setPsw(String psw) {
+		this.psw = psw;
 	}
-
-	public String getPwdiki() {
-		return pwdiki;
-	}
-
-	public void setPwdiki(String pwdiki) {
-		this.pwdiki = pwdiki;
-	}
-
 
 }
