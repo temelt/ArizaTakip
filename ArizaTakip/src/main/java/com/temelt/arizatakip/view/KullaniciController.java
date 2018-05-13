@@ -15,7 +15,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
-import com.temelt.arizatakip.entity.Cagri;
 import com.temelt.arizatakip.entity.Kisi;
 import com.temelt.arizatakip.entity.Kullanici;
 import com.temelt.arizatakip.service.KisiService;

@@ -6,16 +6,16 @@
 	template="/template/template.xhtml">
 	<ui:define name="pageContent">
 		<h:form id="frmKullanici">
-			<p:dataTable id="tblKullanici" paginator="true" var="k" lazy="true"
+			<p:dataTable id="tblKullanici" paginator="true" var="k" lazy="true" rows="5"
 				value="#{kullaniciController.kullaniciL}" reflow="true">
 				<f:facet name="header">
 					 Kullanici Listesi
 				</f:facet>
 				 
-				<p:column headerText="id">
+				<p:column headerText="id" sortBy="#{k.id}">
 					<h:outputText value="#{k.id}" />
 				</p:column>
-				<p:column headerText="Kullanıcı İsmi">
+				<p:column headerText="Kullanıcı İsmi" sortBy="#{k.usrnm}">
 					<h:outputText value="#{k.usrnm}" />
 				</p:column>
 				<p:column headerText="Şifre">

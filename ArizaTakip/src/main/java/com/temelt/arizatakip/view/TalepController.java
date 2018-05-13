@@ -5,12 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.hibernate.type.YesNoType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.temelt.arizatakip.entity.Cagri;
 import com.temelt.arizatakip.entity.Personel;
 import com.temelt.arizatakip.entity.Talep;
 import com.temelt.arizatakip.service.PersonelService;
