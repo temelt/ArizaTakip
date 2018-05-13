@@ -18,24 +18,24 @@
 				<h:outputText value="#{kisi.id}" />
 			</p:column>
 
-			<p:column headerText="Ad">
+			<p:column headerText="Ad" sortBy="#{kisi.ad}" filterBy="#{kisi.ad}">
 				<h:outputText value="#{kisi.ad}" />
 			</p:column>
 			
-			<p:column headerText="Soyad">
+			<p:column headerText="Soyad" sortBy="#{kisi.ad}">
 				<h:outputText value="#{kisi.soyad}" />
 			</p:column>
 			
 
-			<p:column headerText="Adres">
+			<p:column headerText="Adres" sortBy="#{kisi.ad}">
 				<h:outputText value="#{kisi.adres}" />
 			</p:column>
 			
-			<p:column headerText="Telefon">
+			<p:column headerText="Telefon" sortBy="#{kisi.ad}">
 				<h:outputText value="#{kisi.telNo}" />
 			</p:column>
 			
-			<p:column headerText="TC">
+			<p:column headerText="TC" sortBy="#{kisi.ad}">
 				<h:outputText value="#{kisi.tc}" />
 			</p:column>
 			
@@ -54,6 +54,18 @@
 			
 			<f:facet name="footer">
 				<p:commandButton value="Yeni" action="#{kisiController.yeni}" update=":frmKisi:dlgKisi" oncomplete="PF('dlgKisi').show()"></p:commandButton>
+			    <h:outputText value="&#160;" />
+	            <p:commandLink value="XLS">
+	                <p:dataExporter encoding="iso-8859-9" type="xls" target="tblCagri" fileName="cagri" />
+	            </p:commandLink>
+	            <h:outputText value="&#160;" />
+	            <p:commandLink value="PDF">
+	                <p:dataExporter encoding="iso-8859-9" type="pdf" target="tblCagri" fileName="cagri"/>
+	            </p:commandLink>
+	 			<h:outputText value="&#160;" />
+	            <p:commandLink value="CSV">
+	                <p:dataExporter encoding="iso-8859-9" type="csv" target="tblCagri" fileName="cagri" />
+	            </p:commandLink>
 			</f:facet>
 		</p:dataTable>
 
