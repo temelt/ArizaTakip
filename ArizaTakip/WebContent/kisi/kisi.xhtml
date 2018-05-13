@@ -8,7 +8,7 @@
 	
 	<h:form id="frmKisi">
 		<p:dataTable id="tblKisi" paginator="true" var="kisi" value="#{kisiController.kisiListe}"
-		reflow="true" rows="5">
+		reflow="true" rows="5" lazy="true">
 
 			<f:facet name="header">
 	            Kişi Listesi
