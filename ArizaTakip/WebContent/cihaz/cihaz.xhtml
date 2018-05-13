@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+	
+	<h:form id="frmCihaz">
+		<p:dataTable id="tblCihaz" paginator="true" var="cihaz" value="#{cihazMB.cihazListe}"
+		reflow="true" rows="5">
+
+			<f:facet name="header">
+	            Cihaz Listesi
+	        </f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{cihaz.id}" />
+			</p:column>
+
+			<p:column headerText="Adı">
+				<h:outputText value="#{cihaz.adi}" />
+			</p:column>
+			
+			<p:column headerText="SeriNo">
+				<h:outputText value="#{cihaz.seriNo}" />
+			</p:column>
+			
+			<p:column headerText="Tipi">
+				<h:outputText value="#{cihaz.tipi}" />
+			</p:column>
+
+			<p:column headerText="Fiyatı">
+				<h:outputText value="#{cihaz.cihazfiyati}" />
+			</p:column>
+			
+			<p:column headerText="Omru">
+				<h:outputText value="#{cihaz.cihazomru}" />
+			</p:column>
+			
+			<p:column headerText="Kullanımı">
+				<h:outputText value="#{cihaz.cihazkullanimi}" />
+			</p:column>
+			
+			<p:column headerText="YıpranmaOranı">
+				<h:outputText value="#{cihaz.yipranmaorani}" />
+			</p:column>		
+		
+			<p:column headerText="işlemler">
+				<p:commandButton icon="ui-icon-pencil" action="#{cihazMB.goster(cihaz.id)}" update=":frmCihaz:dlgCihaz" oncomplete="PF('dlgCihaz').show()"></p:commandButton>
+				<p:commandButton icon="ui-icon-trash" action="#{cihazMB.sil(cihaz.id)}" update=":frmCihaz:tblCihaz" >
+					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
+			</p:column>
+			
+			<f:facet name="footer">
+				<p:commandButton value="Yeni" action="#{cihazMB.yeni}" update=":frmCihaz:dlgCihaz" oncomplete="PF('dlgCihaz').show()"></p:commandButton>
+			</f:facet>
+		</p:dataTable>
+
+		<p:dialog id="dlgCihaz" widgetVar="dlgCihaz" header="Cihaz Düzenleme" modal="true">
+			<p:panelGrid columns="2">
+							
+				<p:outputLabel value="Adı :"></p:outputLabel>
+				<p:inputText value="#{cihazMB.cihaz.adi}"></p:inputText>
+				
+				<p:outputLabel value="Serino :"></p:outputLabel>
+				<p:inputText value="#{cihazMB.cihaz.seriNo}"></p:inputText>
+				
+				<p:outputLabel value="Tipi :"></p:outputLabel>
+				<p:inputTextarea value="#{cihazMB.cihaz.tipi}"></p:inputTextarea>
+				
+				<p:outputLabel value="Cihazfiyatı :"></p:outputLabel>
+				<p:inputNumber value="#{cihazMB.cihaz.cihazfiyati}"></p:inputNumber>
+				
+				<p:outputLabel value="CihazOmru :"></p:outputLabel>
+				<p:inputText value="#{cihazMB.cihaz.cihazomru}"></p:inputText>
+				
+				<p:outputLabel value="CihazKullanımı:"></p:outputLabel>
+				<p:inputTextarea value="#{cihazMB.cihaz.cihazkullanimi}"></p:inputTextarea>		
+				            
+			</p:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton value="İptal" oncomplete="PF('dlgCihaz').hide()"></p:commandButton>
+				<p:commandButton value="Kaydet" action="#{cihazMB.kaydet}" update=":frmCihaz:tblCihaz" oncomplete="PF('dlgCihaz').hide()"></p:commandButton>
+			</f:facet>
+		</p:dialog>
+	</h:form>
+
+	</ui:define>
+</ui:composition>
