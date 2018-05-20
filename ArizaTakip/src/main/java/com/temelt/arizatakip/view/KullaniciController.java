@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import com.temelt.arizatakip.entity.Kisi;
 import com.temelt.arizatakip.entity.Kullanici;
+import com.temelt.arizatakip.security.SpringUserServiceImpl;
 import com.temelt.arizatakip.service.KisiService;
 import com.temelt.arizatakip.service.KullaniciService;
 
@@ -30,6 +31,8 @@ public class KullaniciController implements Serializable {
 	private static final long serialVersionUID = 5980806834126346266L;
 	@Autowired
 	private KullaniciService kservice;
+	@Autowired
+	private SpringUserServiceImpl springUserServiceImpl;
 	@Autowired
 	private KisiService kisiservice;
 	private LazyDataModel<Kullanici> kullaniciL;
@@ -67,7 +70,7 @@ public class KullaniciController implements Serializable {
 	}
 
 	public void save() {
-		kservice.save(kullanici);
+		springUserServiceImpl.kaydet(kullanici);
 		listele();
 		yeni();
 	}
@@ -78,7 +81,7 @@ public class KullaniciController implements Serializable {
 	}
 
 	public void listele() {
-		kullaniciL=new LazyDataModel<Kullanici>() {
+		kullaniciL = new LazyDataModel<Kullanici>() {
 			List<Kullanici> klist;
 
 			/**
@@ -89,55 +92,48 @@ public class KullaniciController implements Serializable {
 			@Override
 			public List<Kullanici> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 					Map<String, Object> filters) {
-				int offset=0;
-				if(first>0) {
-					offset = first/pageSize;
+				int offset = 0;
+				if (first > 0) {
+					offset = first / pageSize;
 				}
-				
-				Sort s=null;
-				if(sortOrder!=null && sortField !=null) {
-					if(sortOrder.equals(SortOrder.ASCENDING)) {
-						s =new Sort(Sort.Direction.ASC,sortField);
-					}else if(sortOrder.equals(SortOrder.DESCENDING)) {
-						s =new Sort(Sort.Direction.DESC,sortField);
+
+				Sort s = null;
+				if (sortOrder != null && sortField != null) {
+					if (sortOrder.equals(SortOrder.ASCENDING)) {
+						s = new Sort(Sort.Direction.ASC, sortField);
+					} else if (sortOrder.equals(SortOrder.DESCENDING)) {
+						s = new Sort(Sort.Direction.DESC, sortField);
 					}
 				}
-							
-				String usrnm="";
-				if(filters.get("usrnm")!=null) {
-					usrnm=filters.get("usrnm").toString();
+
+				String usrnm = "";
+				if (filters.get("usrnm") != null) {
+					usrnm = filters.get("usrnm").toString();
 				}
-				
-				Page<Kullanici> liste = kservice.findByUsrnmContainingIgnoreCase(usrnm,new PageRequest(offset, pageSize,s));
+
+				Page<Kullanici> liste = kservice.findByUsrnmContainingIgnoreCase(usrnm,
+						new PageRequest(offset, pageSize, s));
 				this.setRowCount(Integer.parseInt(String.valueOf(liste.getTotalElements())));
 				klist = liste.getContent();
 				return klist;
 			}
-			
-		    @Override
-		    public Kullanici getRowData(String rowKey) {
-		        for(Kullanici c : klist) {
-		            if(c.getId().equals(rowKey))
-		                return c;
-		        }
-		 
-		        return null;
-		    }
-		 
-		    @Override
-		    public Object getRowKey(Kullanici c) {
-		        return c.getId();
-		    }
-			
+
+			@Override
+			public Kullanici getRowData(String rowKey) {
+				for (Kullanici c : klist) {
+					if (c.getId().equals(rowKey))
+						return c;
+				}
+
+				return null;
+			}
+
+			@Override
+			public Object getRowKey(Kullanici c) {
+				return c.getId();
+			}
+
 		};
 	}
-			
-		
-		
-		
-		
-		
-		
-	}
 
-
+}

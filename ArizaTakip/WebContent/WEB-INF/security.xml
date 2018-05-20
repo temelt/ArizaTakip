@@ -9,14 +9,15 @@
 	<http pattern="/resources/**" security="none"/>
 	<http pattern="/login.xhtml" security="none"/>
 
-	<http use-expressions="true">	
-		<intercept-url pattern="/secure/**" access="isAuthenticated()" />
+	<http use-expressions="true" >	
+		<intercept-url pattern="/secure/**" access="isAuthenticated()"  />
+		
 		<form-login default-target-url="/secure/index.xhtml" login-page="/login.xhtml" />
 		<access-denied-handler error-page="/accessDenied.xhtml" /> 
-		<logout logout-url="/login.xhtml" invalidate-session="true" logout-success-url="/login.xhtml"/>		
+		<logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.xhtml"/>		
 	</http>
 
-	<authentication-manager>
+	<authentication-manager >
 	  <authentication-provider user-service-ref="springUserServiceImpl">
 	  <password-encoder hash="md5"></password-encoder>
 	  </authentication-provider>
