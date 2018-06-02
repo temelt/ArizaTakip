@@ -27,6 +27,16 @@
             </props>
         </property>
    </bean>
+   
+   <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+	    <property name="scopes">
+	        <map>
+	            <entry key="view">
+	                <bean class="com.temelt.arizatakip.util.ViewScope"/>
+	            </entry>
+	        </map>
+	    </property>
+	</bean>
 
 	<bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter">
 	    <property name="baseAddress" value="http://localhost:8081/" />

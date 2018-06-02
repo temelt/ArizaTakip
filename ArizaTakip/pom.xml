@@ -89,7 +89,7 @@
 		<!-- End of Security -->
 
 
-<!--  WebServis Jarları -->
+		<!-- WebServis Jarları -->
 
 		<dependency>
 			<groupId>javax.xml</groupId>
@@ -116,7 +116,7 @@
 			<artifactId>saaj-api</artifactId>
 			<version>1.3.4</version>
 		</dependency>
-<!--  WebServis Jarları -->
+		<!-- WebServis Jarları -->
 
 
 		<dependency>
@@ -168,6 +168,13 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

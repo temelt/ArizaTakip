@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:define name="pageContent">
+	
+	<h:form id="frm">
+	
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Ad:"></p:outputLabel>
+				<p:inputText disabled="true" value="#{kisiDetayController.kisi.ad}"></p:inputText>
+				
+				<p:outputLabel value="Soyad :"></p:outputLabel>
+				<p:inputText disabled="true" value="#{kisiDetayController.kisi.soyad}"></p:inputText>
+				
+				<p:outputLabel value="Telefon No :"></p:outputLabel>
+				<p:inputText disabled="true" value="#{kisiDetayController.kisi.telNo}"></p:inputText>
+				
+				<p:outputLabel value="Adres :"></p:outputLabel>
+				<p:inputTextarea disabled="true" value="#{kisiDetayController.kisi.adres}"></p:inputTextarea>
+			
+				
+				<p:outputLabel value="TC :"></p:outputLabel>
+				<p:inputText disabled="true" value="#{kisiDetayController.kisi.tc}"></p:inputText>
+				
+			</p:panelGrid>
+		
+	</h:form>
+	
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

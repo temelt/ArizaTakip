@@ -50,6 +50,7 @@
 			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 			    </p:confirmDialog>
+			    <a href="#{request.contextPath}/secure/kisi/kisidetay.xhtml?faces-redirect=true&amp;id=#{kisi.id}">Detay</a>
 			</p:column>
 			
 			<f:facet name="footer">
@@ -71,10 +72,10 @@
 
 		<p:dialog id="dlgKisi" widgetVar="dlgKisi" header="Kişi Düzenleme" modal="true">
 			<p:panelGrid columns="2">
-				<p:outputLabel value="Ad:"></p:outputLabel>
+				<p:outputLabel value="#{messages['form.kisi.dlg.lbl.adi']} :"></p:outputLabel>
 				<p:inputText value="#{kisiController.kisi.ad}"></p:inputText>
 				
-				<p:outputLabel value="Soyad :"></p:outputLabel>
+				<p:outputLabel value="#{messages['form.kisi.dlg.lbl.soyadi']} :"></p:outputLabel>
 				<p:inputText value="#{kisiController.kisi.soyad}"></p:inputText>
 				
 				<p:outputLabel value="Telefon No :"></p:outputLabel>
@@ -94,8 +95,12 @@
 				<p:commandButton value="Kaydet" action="#{kisiController.kaydet}" update=":frmKisi:tblKisi" oncomplete="PF('dlgKisi').hide()"></p:commandButton>
 			</f:facet>
 		</p:dialog>
+		
+		
 	</h:form>
-
+	
+	
+	
 	</ui:define>
 </ui:composition>
 
