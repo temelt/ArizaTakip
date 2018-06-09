@@ -46,6 +46,8 @@
 				<p:commandButton icon="ui-icon-trash" action="#{kisiController.sil(kisi.id)}" update=":frmKisi:tblKisi" >
 					<p:confirm header="Silme Onay" message="Emin Misiniz?" icon="ui-icon-alert" />
 				</p:commandButton>
+				<p:commandButton value="Rapor Al" ajax="false" action="#{kisiController.kisiKartiRaporAl(kisi.id)}"></p:commandButton>
+				
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 			        <p:commandButton value="Evet" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 			        <p:commandButton value="Hayır" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
@@ -55,6 +57,9 @@
 			
 			<f:facet name="footer">
 				<p:commandButton value="Yeni" action="#{kisiController.yeni}" update=":frmKisi:dlgKisi" oncomplete="PF('dlgKisi').show()"></p:commandButton>
+				
+				<p:commandButton value="Rapor Al" ajax="false" action="#{kisiController.raporAl}"></p:commandButton>
+				
 			    <h:outputText value="&#160;" />
 	            <p:commandLink value="XLS">
 	                <p:dataExporter encoding="iso-8859-9" type="xls" target="tblCagri" fileName="cagri" />
