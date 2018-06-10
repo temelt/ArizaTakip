@@ -90,8 +90,7 @@
 		</dependency>
 		<!-- AOP Pro -->
 
-		<!-- Security -->
-
+	   <!-- Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -107,12 +106,10 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
-
 		<!-- End of Security -->
 
 
 		<!-- WebServis Jarları -->
-
 		<dependency>
 			<groupId>javax.xml</groupId>
 			<artifactId>jaxrpc-api</artifactId>
@@ -146,7 +143,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.11.Final</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
